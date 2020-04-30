@@ -1,16 +1,20 @@
 package com.code.ExcelDemo;
 
-import java.io.File;
-import java.io.FileInputStream;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import org.apache.poi.ss.usermodel.DataFormatter;
-import org.apache.poi.xssf.usermodel.XSSFCell;
+/*import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.testng.annotations.DataProvider;
+import org.testng.annotations.DataProvider;*/
+
+import jxl.Sheet;
+import jxl.Workbook;
+import jxl.read.biff.BiffException;
 
 
 
@@ -18,7 +22,7 @@ public class App
 {
 	//private static WebDriver driver;
 	
-	static File resultFile = new File("C:\\Users\\fidel\\eclipse-workspace\\ExcelDemo\\Data\\Zencanatestdata.xlsx");
+	//static File resultFile = new File("C:\\Users\\fidel\\eclipse-workspace\\ExcelDemo\\Data\\Zencanatestdata.xlsx");
 	
 	
    public static DataFormatter formatter = new DataFormatter();
@@ -35,11 +39,10 @@ public class App
     }*/
 	
 	
-	@DataProvider
-	  public static Object[][] readExcel(String sheetname) throws IOException 
+ public static Object[][] readExcel(String fileName,String sheetName) throws IOException 
 	{
 		
-	 FileInputStream fis= new FileInputStream(resultFile);
+	 /*FileInputStream fis= new FileInputStream(resultFile);
 		XSSFWorkbook wb = new XSSFWorkbook(fis);
 	
         XSSFSheet sh = wb.getSheet(sheetname);
@@ -71,7 +74,36 @@ public class App
             }
         }       
         return xlData;
-    }   
+    }   */
+	 String[][] arrayExcelData = null;
+		try {
+			FileInputStream fs = new FileInputStream(fileName);
+			Workbook wb = Workbook.getWorkbook(fs);
+			Sheet sh = wb.getSheet(sheetName);
+
+			int totalNoOfCols = sh.getColumns();
+			int totalNoOfRows = sh.getRows();
+			
+			arrayExcelData = new String[totalNoOfRows-1][totalNoOfCols];
+			
+			for (int i= 1 ; i < totalNoOfRows; i++) {
+
+				for (int j=0; j < totalNoOfCols; j++) {
+					arrayExcelData[i-1][j] = sh.getCell(j, i).getContents();
+				}
+
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+			e.printStackTrace();
+		} catch (BiffException e) {
+			e.printStackTrace();
+		}
+		return arrayExcelData;
+	}
+        
 }
 	
 	

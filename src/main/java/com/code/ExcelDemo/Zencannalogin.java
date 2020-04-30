@@ -22,23 +22,17 @@ public class Zencannalogin extends App
 	    } 
 	
     
-   @DataProvider
+   @DataProvider(name="getLog")
     public static Object[][] getLog() throws Exception
     {
-	   Object[][] data = App.readExcel("Sheet1");
+	   Object[][] data = App.readExcel("C:\\Users\\fidel\\eclipse-workspace\\ExcelDemo\\Data\\Zencanatestdata.xlsx","Sheet1");
        return data;
          
 	}
-   @Test(dataProvider = "getLog")
-   public void fillUserForm(String userName, String passWord)
-   {
-      System.out.println("UserName: "+ userName);
-      System.out.println("PassWord: "+ passWord);
-      System.out.println("*********************");
-   }
+  
     
-    @Test(dataProvider="getLog")
-	  public void setdata(String sUsername, String sPassword) 
+    @Test
+	  public void setdata(String sUsername, String sPassword) throws Exception
 	{
     	    	
 		 driver.findElement(By.xpath("//input[@id='emailaddress']")).sendKeys(sUsername);
