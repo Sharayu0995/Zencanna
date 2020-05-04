@@ -6,11 +6,14 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import org.apache.poi.ss.usermodel.DataFormatter;
+import org.openqa.selenium.WebDriver;
+
 /*import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.testng.annotations.DataProvider;*/
+
 
 import jxl.Sheet;
 import jxl.Workbook;
@@ -20,25 +23,13 @@ import jxl.read.biff.BiffException;
 
 public class App 
 {
-	//private static WebDriver driver;
+	WebDriver driver;
 	
 	//static File resultFile = new File("C:\\Users\\fidel\\eclipse-workspace\\ExcelDemo\\Data\\Zencanatestdata.xlsx");
 	
 	
    public static DataFormatter formatter = new DataFormatter();
-    
-    /*@BeforeSuite
-    public void openBrowser() throws InterruptedException
-    {
-    	System.setProperty("webdriver.chrome.driver","C:\\Users\\fidel\\eclipse-workspace\\ExcelDemo\\Driver\\chromedriver.exe");
-    	 driver = new ChromeDriver();
-    	 driver.manage().window().maximize();
-    	 driver.get("http://qa.zencanna.io");
-	     Thread.sleep(10000);
-	 
-    }*/
-	
-	
+
  public static Object[][] readExcel(String fileName,String sheetName) throws IOException 
 	{
 		

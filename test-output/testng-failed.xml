@@ -5,9 +5,7 @@
     <classes>
       <class name="com.code.ExcelDemo.Zencannalogin">
         <methods>
-          <include name="fillUserForm"/>
           <include name="openBrowser"/>
-          <include name="close"/>
           <include name="setdata"/>
         </methods>
       </class> <!-- com.code.ExcelDemo.Zencannalogin -->

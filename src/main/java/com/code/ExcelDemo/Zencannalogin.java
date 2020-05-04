@@ -2,9 +2,9 @@ package com.code.ExcelDemo;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.DataProvider;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 public class Zencannalogin extends App
@@ -30,11 +30,12 @@ public class Zencannalogin extends App
          
 	}
   
-    
+   @Parameters("openBrowser")
     @Test
 	  public void setdata(String sUsername, String sPassword) throws Exception
 	{
-    	    	
+	  
+      
 		 driver.findElement(By.xpath("//input[@id='emailaddress']")).sendKeys(sUsername);
 
 			System.out.println(sUsername);
@@ -49,13 +50,12 @@ public class Zencannalogin extends App
 
 	        driver.findElement(By.xpath("//span[@class='material-icons power_settings_new rubix-icon']")).click();
 	        driver.findElement(By.xpath("//button[contains(text(),'Yes')]")).click();
-
+       }
 	     
-	  }
-    @AfterMethod
+  /*  @AfterMethod
     public void close()
     {
     	 driver.close();
-    }
+    }*/
 }
 
